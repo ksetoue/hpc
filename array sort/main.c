@@ -8,15 +8,10 @@ void create_array(int array[], int size){
         array[i] = rand() % 1600;
 }
 
-// int split_array(int size){
-//     int newArray[size];
-//
-//
-//     return newArray;
-// }
+
 
 int main(int argc, char **argv){
-    time_t now, later; 
+    time_t now, later;
 
     FILE *unsorted_arrays;
 
@@ -75,6 +70,9 @@ int main(int argc, char **argv){
             fprintf(unsorted_arrays, "]\n\n");
         }
     }
+
+    //split
+
 
 
 
