@@ -165,10 +165,10 @@ int main(int argc, char const **argv) {
 
 	/********** Send each subarray to each process **********/
 	int *sub_array = malloc(s * sizeof(int));
-	MPI_Scatter(data, size, MPI_INT, sub_array, size, MPI_INT, 0, MPI_COMM_WORLD);
+	MPI_Scatter(data, s, MPI_INT, sub_array, s, MPI_INT, 0, MPI_COMM_WORLD);
 	
 	/********** Perform the mergesort on each process **********/
-	mergesort(sub_array, 0, (size - 1));
+	mergesort(sub_array, 0, (s - 1));
 	
     /********** Gather the sorted subarrays into one **********/    
     MPI_Gather(sub_array, s, MPI_INT, data, s, MPI_INT, 0, MPI_COMM_WORLD);
@@ -176,7 +176,7 @@ int main(int argc, char const **argv) {
     /********** Make the final mergeSort call **********/
 	if(world_rank == 0) {		
 		int *other_array = malloc(size * sizeof(int));
-		mergesort(sub_array, 0, (s - 1));
+		mergesort(data, 0, (size - 1));
 		
 		/********** Display the sorted array **********/
 		// printf("\nThis is the sorted array: ");
